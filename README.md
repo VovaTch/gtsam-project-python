@@ -1,6 +1,6 @@
 # gtsam-project-python
 
-Project template using GTSAM + python wrapping
+Prior factor for a 2d vector, created by Vladimir Tchuiev. Prelude to a larger 4-way factor for infering posterior epistemic classifier uncertainty.
 
 ## PREREQUISITES
 
@@ -24,4 +24,6 @@ Project template using GTSAM + python wrapping
 
 ## DOCUMENTATION
 
-For more detailed information, please refer to the [tutorial](TUTORIAL.md).
+For more detailed information, please refer to the [tutorial](TUTORIAL.md). I Don't have the time currently to make a detailed ReadMe for my specific case, may do that later.
+Note that the namespace in the CMakeLists.txt must be identical to the ones that appear in the .cpp and .h files, so I changed it manually to "gtsam". Note also that PyObject* type doesn't work well with
+the wrapper, so had to change it to gtsam::Vector.
