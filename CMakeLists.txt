@@ -3,7 +3,7 @@
 ###################################################################################
 # 1. To create your own project, replace "gtsam_example" with the actual name of your project
 cmake_minimum_required(VERSION 3.0)
-project(gtsam_example CXX C)
+project(lambda_prior_factor_2d CXX C)
 set(CXX_STANDARD 11)
 
 ###################################################################################
@@ -11,7 +11,7 @@ set(CXX_STANDARD 11)
 # Load the default Python version strings
 find_package (Python COMPONENTS Interpreter Development)
 
-set(WRAP_PYTHON_VERSION "${Python_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" CACHE STRING "The Python version to use for wrapping")
+set(WRAP_PYTHON_VERSION "3.6.9" CACHE STRING "The Python version to use for wrapping")
 if(WRAP_PYTHON_VERSION STREQUAL "${Python_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
   find_package(PythonInterp REQUIRED)
   find_package(PythonLibs REQUIRED)
@@ -45,8 +45,8 @@ include_directories(BEFORE "${PROJECT_SOURCE_DIR}")
 # This is a common cmake step where we load all the source files
 # and link against the GTSAM library.
 add_library(${PROJECT_NAME} SHARED
-              src/greeting.h
-              src/greeting.cpp)
+              src/LambdaPriorFactor2D.h
+              src/LambdaPriorFactor2D.cpp)
 target_link_libraries(${PROJECT_NAME} gtsam)
 
 ###################################################################################
@@ -114,7 +114,7 @@ pybind_wrap(${PROJECT_NAME}_py # target
             ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}.h # interface header file (gtsam_example.h in the root directory)
             "${PROJECT_NAME}.cpp" # the generated cpp (gtsam_example.cpp)
             "${PROJECT_NAME}" # module_name (gtsam_example)
-            "${PROJECT_NAME}" # top namespace in the cpp file (gtsam_example)
+            "gtsam" # top namespace in the cpp file (gtsam_example)
             "${ignore}" # ignore classes
             ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.tpl
             ${PROJECT_NAME} # libs
